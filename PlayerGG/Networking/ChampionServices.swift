@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-final class ChampionViewModel {
-    static let shared = ChampionViewModel()
+final class ChampionServices {
+    static let shared = ChampionServices()
    
     //funcion para traer los campeones en general
     func getChampion(completion : @escaping (_ champs:ChampionsResponseModel?)->()){
@@ -18,7 +18,7 @@ final class ChampionViewModel {
         let url = URL(string:"http://ddragon.leagueoflegends.com/cdn/12.5.1/data/es_MX/champion.json")
         urlsession.dataTask(with:url!) { data, response, error in
             
-            print("Data \(String(data: data!, encoding: .utf8) ?? "")")
+            //print("Data \(String(data: data!, encoding: .utf8) ?? "")")
             if let data = data {
                 guard let champResponse = try? JSONDecoder().decode(ChampionsResponseModel.self, from: data)else{
                     return completion(nil)

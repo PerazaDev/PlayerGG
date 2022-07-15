@@ -21,6 +21,8 @@
 		2860887428713834003E769E /* ChampionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2860887228713834003E769E /* ChampionTableViewCell.xib */; };
 		2860887828715A19003E769E /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860887728715A19003E769E /* UITableViewExtension.swift */; };
 		2860887A28716670003E769E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860887928716670003E769E /* UIImageExtension.swift */; };
+		28AABCFE287F6A0D0054301C /* ChampionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AABCFD287F6A0D0054301C /* ChampionViewModel.swift */; };
+		28AABD00287F6B240054301C /* ChampionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AABCFF287F6B240054301C /* ChampionProtocols.swift */; };
 		28BBCD9C2872731E0017B490 /* SkinsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BBCD9A2872731E0017B490 /* SkinsCollectionViewCell.swift */; };
 		28BBCD9D2872731E0017B490 /* SkinsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28BBCD9B2872731E0017B490 /* SkinsCollectionViewCell.xib */; };
 		28BF37262878C75C00D4EE09 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BF37252878C75C00D4EE09 /* CustomUIImageView.swift */; };
@@ -43,6 +45,8 @@
 		2860887228713834003E769E /* ChampionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionTableViewCell.xib; sourceTree = "<group>"; };
 		2860887728715A19003E769E /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		2860887928716670003E769E /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
+		28AABCFD287F6A0D0054301C /* ChampionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionViewModel.swift; sourceTree = "<group>"; };
+		28AABCFF287F6B240054301C /* ChampionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionProtocols.swift; sourceTree = "<group>"; };
 		28BBCD9A2872731E0017B490 /* SkinsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinsCollectionViewCell.swift; sourceTree = "<group>"; };
 		28BBCD9B2872731E0017B490 /* SkinsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkinsCollectionViewCell.xib; sourceTree = "<group>"; };
 		28BF37252878C75C00D4EE09 /* CustomUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 		2860886228712FE7003E769E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				28AABCFD287F6A0D0054301C /* ChampionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				2860887728715A19003E769E /* UITableViewExtension.swift */,
 				2860887928716670003E769E /* UIImageExtension.swift */,
 				28BF37252878C75C00D4EE09 /* CustomUIImageView.swift */,
+				28AABCFF287F6B240054301C /* ChampionProtocols.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -243,11 +249,13 @@
 				2860886D287136B1003E769E /* ChampionServices.swift in Sources */,
 				2860886F28713731003E769E /* ChampionsResponseModel.swift in Sources */,
 				28BBCD9C2872731E0017B490 /* SkinsCollectionViewCell.swift in Sources */,
+				28AABCFE287F6A0D0054301C /* ChampionViewModel.swift in Sources */,
 				2860887828715A19003E769E /* UITableViewExtension.swift in Sources */,
 				2860886528712FFF003E769E /* ChampionViewController.swift in Sources */,
 				2860887A28716670003E769E /* UIImageExtension.swift in Sources */,
 				2860886928713685003E769E /* ChampionDetailViewController.swift in Sources */,
 				2860884C28712FC2003E769E /* AppDelegate.swift in Sources */,
+				28AABD00287F6B240054301C /* ChampionProtocols.swift in Sources */,
 				2860884E28712FC2003E769E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

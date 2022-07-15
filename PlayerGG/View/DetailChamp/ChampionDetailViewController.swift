@@ -32,9 +32,9 @@ class ChampionDetailViewController: UIViewController {
     private func setupView (){
        // skinsCollectionView.delegate = self
        // skinsCollectionView.dataSource = self
-        ChampionViewModel.shared.getChampion(name: championId) { champ in
-            ChampionViewModel.shared.getIcoinChampion(typeimage: .full, icon: "\(self.championId)_0") { img in
-                ChampionViewModel.shared.getIcoinChampion(typeimage: .portrait, icon: "\(self.championId)_0") { img2 in
+        ChampionServices.shared.getChampion(name: championId) { champ in
+            ChampionServices.shared.getIcoinChampion(typeimage: .full, icon: "\(self.championId)_0") { img in
+                ChampionServices.shared.getIcoinChampion(typeimage: .portrait, icon: "\(self.championId)_0") { img2 in
                     DispatchQueue.main.async {
                         self.championDetail = champ
                         self.mainImage.image = img
@@ -59,7 +59,7 @@ extension ChampionDetailViewController :UICollectionViewDelegate, UICollectionVi
             return UICollectionViewCell()
             
         }
-        ChampionViewModel.shared.getIcoinChampionURL(typeimage: .portrait, icon: "\(self.championDetail?.id ?? "")_\(self.championDetail?.skins?[indexPath.row].num ?? 0)") { img in
+        ChampionServices.shared.getIcoinChampionURL(typeimage: .portrait, icon: "\(self.championDetail?.id ?? "")_\(self.championDetail?.skins?[indexPath.row].num ?? 0)") { img in
             cell.configure(name: self.championDetail?.skins?[indexPath.row].name ?? "", skin: img)
         }
         /*ChampionViewModel.shared.getIcoinChampion(typeimage: .portrait, icon: "\(self.championDetail?.id ?? "")_\(self.championDetail?.skins?[indexPath.row].num ?? 0)") { img in

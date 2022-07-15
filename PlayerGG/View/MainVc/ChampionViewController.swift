@@ -19,15 +19,14 @@ class ChampionViewController: UIViewController {
         }
     }
     //MARK: Variables
-    var icons : [String] = []
+    var iconCurrent : URL?
     var champions : [ChampionModel] = [] {didSet { DispatchQueue.main.async {
         self.championsTV.reloadData()
-        
+            }
+        }
     }
-        
-    }}
     var resultSearchController = UISearchController()
-
+    let viewModel = ChampionViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +35,7 @@ class ChampionViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        viewModel.view = self
         fetchData ()
     }
 
@@ -71,23 +71,35 @@ class ChampionViewController: UIViewController {
         setSearchController()
     }
     func fetchData () {
-        //se hace la peticion de la lista de champions y se recibe mediante un closure
-        ChampionViewModel.shared.getChampion { champs in
+        viewModel.loadDataChampions()
+    }
+}
+extension ChampionViewController : ChampionsViewProtocol {
+    func getIconChampion(for imgURL: URL?) {
+        
+            self.iconCurrent = imgURL
+    }
+    
+    func loadChampions(for championsObj: ChampionsResponseModel?) {
+        DispatchQueue.main.async {
+            self.championsTV.refreshControl?.endRefreshing()
+        }
+        if let champsList = championsObj, !(champsList.data.isEmpty) {
+            self.champions = champsList.data.values.reversed()
+            self.champions.sort { champ1, champ2 in
+                champ1.name<champ2.name
+            }
+        }
+        else{
             DispatchQueue.main.async {
-                self.championsTV.refreshControl?.endRefreshing()
-            }
-            if let champsList = champs, !(champsList.data.isEmpty) {
-                self.champions = champsList.data.values.reversed()
-                self.champions.sort { champ1, champ2 in
-                    champ1.name<champ2.name
-                }
-            }
-            else{
                 self.championsTV.setEmptyMessage("Sin datos")
             }
         }
     }
+    
+    
 }
+
 extension ChampionViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.champions.count
@@ -99,9 +111,12 @@ extension ChampionViewController : UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
             
         }
-        ChampionViewModel.shared.getIcoinChampionURL(typeimage: .icon, icon: self.champions[indexPath.row].id) { img in
-            cell.configureCell(name: self.champions[indexPath.row].name, icon: img)
+        viewModel.getIcoinChampionURL(icon: self.champions[indexPath.row].id) {
+            cell.configureCell(name: self.champions[indexPath.row].name, icon: self.iconCurrent)
         }
+        /*ChampionServices.shared.getIcoinChampionURL(typeimage: .icon, icon: self.champions[indexPath.row].id) { img in
+            cell.configureCell(name: self.champions[indexPath.row].name, icon: img)
+        }*/
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
