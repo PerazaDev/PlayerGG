@@ -25,6 +25,11 @@ class ChampionViewController: UIViewController {
             }
         }
     }
+    var filteredChampions : [ChampionModel] = [] {didSet { DispatchQueue.main.async {
+        self.championsTV.reloadData()
+            }
+        }
+    }
     var resultSearchController = UISearchController()
     let viewModel = ChampionViewModel()
     
@@ -60,7 +65,6 @@ class ChampionViewController: UIViewController {
         navigationItem.searchController = searchController
         resultSearchController = searchController
         searchController.searchBar.delegate = self
-   
 
     }
     @objc func didPullToRefresh() {
@@ -76,7 +80,6 @@ class ChampionViewController: UIViewController {
 }
 extension ChampionViewController : ChampionsViewProtocol {
     func getIconChampion(for imgURL: URL?) {
-        
             self.iconCurrent = imgURL
     }
     
@@ -102,6 +105,9 @@ extension ChampionViewController : ChampionsViewProtocol {
 
 extension ChampionViewController : UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if resultSearchController.isActive {
+            return self.filteredChampions.count
+        }
         return self.champions.count
     }
     
@@ -109,40 +115,37 @@ extension ChampionViewController : UITableViewDelegate, UITableViewDataSource{
         //validamos que haya una celda con el identifier y asi la reutilizamos
         guard let cell = championsTV.dequeueReusableCell(withIdentifier: "championCustomCell", for: indexPath) as? ChampionTableViewCell else{
             return UITableViewCell()
-            
         }
-        viewModel.getIcoinChampionURL(icon: self.champions[indexPath.row].id) {
-            cell.configureCell(name: self.champions[indexPath.row].name, icon: self.iconCurrent)
+        if resultSearchController.isActive {
+            viewModel.getIcoinChampionURL(icon: self.filteredChampions[indexPath.row].id) {
+                cell.configureCell(name: self.filteredChampions[indexPath.row].name, icon: self.iconCurrent)
+            }
+        }else{
+            viewModel.getIcoinChampionURL(icon: self.champions[indexPath.row].id) {
+                cell.configureCell(name: self.champions[indexPath.row].name, icon: self.iconCurrent)
+            }
         }
-        /*ChampionServices.shared.getIcoinChampionURL(typeimage: .icon, icon: self.champions[indexPath.row].id) { img in
-            cell.configureCell(name: self.champions[indexPath.row].name, icon: img)
-        }*/
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = ChampionDetailViewController()
-        vc.championId = self.champions[indexPath.row].id
-        self.navigationController?.pushViewController(vc, animated: true)
+        if resultSearchController.isActive {
+            let vc = ChampionDetailViewController()
+            vc.championId = self.filteredChampions[indexPath.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            let vc = ChampionDetailViewController()
+            vc.championId = self.champions[indexPath.row].id
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 extension ChampionViewController : UISearchBarDelegate, UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
-        
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        //self.navigationItem.searchController = nil
-    }
-    
-    func searchBarBookmarkButtonClicked(_ searchBar: UISearchBar) {
-        if !resultSearchController.isActive {
-            resultSearchController.isActive = true
-            resultSearchController.searchBar.becomeFirstResponder()
-        }
-        searchBar.text = ""
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchController.searchBar.text else{return}
+        filteredChampions = champions.filter({ champ in
+            return champ.name.lowercased().contains(text.lowercased())
+        })
+
     }
     
     
