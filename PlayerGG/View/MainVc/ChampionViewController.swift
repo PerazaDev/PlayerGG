@@ -40,7 +40,7 @@ class ChampionViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.view = self
+        viewModel.listDelegate = self
         fetchData ()
     }
 
@@ -78,7 +78,7 @@ class ChampionViewController: UIViewController {
         viewModel.loadDataChampions()
     }
 }
-extension ChampionViewController : ChampionsViewProtocol {
+extension ChampionViewController : ChampionsVMProtocol {
     func getIconChampion(for imgURL: URL?) {
             self.iconCurrent = imgURL
     }

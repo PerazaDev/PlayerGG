@@ -6,13 +6,14 @@
 //
 
 import Foundation
-protocol ChampionsViewProtocol : AnyObject{
+protocol ChampionsVMProtocol : AnyObject{
     func loadChampions(for championsObj : ChampionsResponseModel?)
     func getIconChampion(for imgURL : URL?)
 
 }
-protocol ChampionDetailViewProtocol : AnyObject{
+protocol ChampionDetailVMProtocol : AnyObject{
     func loadChampion(for champ : ChampionModel)
+    func getIconChampion(for imgURL : URL?)
 }
 protocol IconChampionProtocol : AnyObject {
 }

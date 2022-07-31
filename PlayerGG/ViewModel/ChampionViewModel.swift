@@ -8,17 +8,18 @@
 import Foundation
 
 final class ChampionViewModel {
-    weak var view: ChampionsViewProtocol?
+    weak var listDelegate: ChampionsVMProtocol?
+    weak var detailDelegate : ChampionDetailVMProtocol?
     let services = ChampionServices()
     func loadDataChampions() {
         services.getChampion {[weak self] champs in
-           self?.view?.loadChampions(for: champs)
+           self?.listDelegate?.loadChampions(for: champs)
             
         }
     }
     func getIcoinChampionURL(icon : String, completion : @escaping ()->()){
         services.getIcoinChampionURL(typeimage: .icon, icon: icon) {[weak self] img in
-            self?.view?.getIconChampion(for: img)
+            self?.listDelegate?.getIconChampion(for: img)
             completion()
         }
     }

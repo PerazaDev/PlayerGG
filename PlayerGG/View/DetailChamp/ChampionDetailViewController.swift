@@ -32,6 +32,9 @@ class ChampionDetailViewController: UIViewController {
     private func setupView (){
        // skinsCollectionView.delegate = self
        // skinsCollectionView.dataSource = self
+        ChampionServices.shared.getChampion(name: "Talon") { champ in
+            print(champ)
+        }
         ChampionServices.shared.getChampion(name: championId) { champ in
             ChampionServices.shared.getIcoinChampion(typeimage: .full, icon: "\(self.championId)_0") { img in
                 ChampionServices.shared.getIcoinChampion(typeimage: .portrait, icon: "\(self.championId)_0") { img2 in
@@ -70,6 +73,17 @@ extension ChampionDetailViewController :UICollectionViewDelegate, UICollectionVi
             cell.configureCell(name: self.champions[indexPath.row].name, icon: img)
         }*/
         return cell
+        
+    }
+    
+    
+}
+extension ChampionDetailViewController : ChampionDetailVMProtocol {
+    func getIconChampion(for imgURL: URL?) {
+        
+    }
+    
+    func loadChampion(for champ: ChampionModel) {
         
     }
     

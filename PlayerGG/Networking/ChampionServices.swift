@@ -49,7 +49,7 @@ final class ChampionServices {
     
     //funcion para obtener un tipo de imagen
     func getIcoinChampion(typeimage :TypeImage, icon :String, completion : @escaping (_ img :UIImage?)->()) {
-        print("logoo \(icon)")
+       // print("logoo \(icon)")
         let urlsession = URLSession.shared
         var endpoint = ""
         switch typeimage {
