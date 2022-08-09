@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class ChampionViewModel {
+final class ChampionPresenter {
     weak var listDelegate: ChampionsVMProtocol?
     weak var detailDelegate : ChampionDetailVMProtocol?
     let services = ChampionServices()
@@ -22,6 +22,18 @@ final class ChampionViewModel {
             self?.listDelegate?.getIconChampion(for: img)
             completion()
         }
+    }
+    func getIconPath(typeimage :TypeImage, icon :String) -> String {
+        var endpoint = ""
+        switch typeimage {
+        case .icon:
+            endpoint = "http://ddragon.leagueoflegends.com/cdn/12.5.1/img/champion/\(icon).png"
+        case .full:
+            endpoint = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/\(icon).jpg"
+        case .portrait:
+            endpoint = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/\(icon).jpg"
+        }
+        return endpoint
     }
     
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 extension UIImageView {
-        static let spinner = UIActivityIndicatorView()
+    static let spinner = UIActivityIndicatorView()
     func loadImg(url: URL) {
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {

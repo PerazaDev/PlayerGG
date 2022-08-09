@@ -31,7 +31,7 @@ class ChampionViewController: UIViewController {
         }
     }
     var resultSearchController = UISearchController()
-    let viewModel = ChampionViewModel()
+    let presenter = ChampionPresenter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class ChampionViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewModel.listDelegate = self
+        presenter.listDelegate = self
         fetchData ()
     }
 
@@ -75,7 +75,7 @@ class ChampionViewController: UIViewController {
         setSearchController()
     }
     func fetchData () {
-        viewModel.loadDataChampions()
+        presenter.loadDataChampions()
     }
 }
 extension ChampionViewController : ChampionsVMProtocol {
@@ -117,11 +117,11 @@ extension ChampionViewController : UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
         if resultSearchController.isActive {
-            viewModel.getIcoinChampionURL(icon: self.filteredChampions[indexPath.row].id) {
+            presenter.getIcoinChampionURL(icon: self.filteredChampions[indexPath.row].id) {
                 cell.configureCell(name: self.filteredChampions[indexPath.row].name, icon: self.iconCurrent)
             }
         }else{
-            viewModel.getIcoinChampionURL(icon: self.champions[indexPath.row].id) {
+            presenter.getIcoinChampionURL(icon: self.champions[indexPath.row].id) {
                 cell.configureCell(name: self.champions[indexPath.row].name, icon: self.iconCurrent)
             }
         }

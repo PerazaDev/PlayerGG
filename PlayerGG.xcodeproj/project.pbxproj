@@ -21,7 +21,7 @@
 		2860887428713834003E769E /* ChampionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2860887228713834003E769E /* ChampionTableViewCell.xib */; };
 		2860887828715A19003E769E /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860887728715A19003E769E /* UITableViewExtension.swift */; };
 		2860887A28716670003E769E /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860887928716670003E769E /* UIImageExtension.swift */; };
-		28AABCFE287F6A0D0054301C /* ChampionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AABCFD287F6A0D0054301C /* ChampionViewModel.swift */; };
+		28AABCFE287F6A0D0054301C /* ChampionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AABCFD287F6A0D0054301C /* ChampionPresenter.swift */; };
 		28AABD00287F6B240054301C /* ChampionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AABCFF287F6B240054301C /* ChampionProtocols.swift */; };
 		28BBCD9C2872731E0017B490 /* SkinsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BBCD9A2872731E0017B490 /* SkinsCollectionViewCell.swift */; };
 		28BBCD9D2872731E0017B490 /* SkinsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28BBCD9B2872731E0017B490 /* SkinsCollectionViewCell.xib */; };
@@ -45,7 +45,7 @@
 		2860887228713834003E769E /* ChampionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChampionTableViewCell.xib; sourceTree = "<group>"; };
 		2860887728715A19003E769E /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
 		2860887928716670003E769E /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
-		28AABCFD287F6A0D0054301C /* ChampionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionViewModel.swift; sourceTree = "<group>"; };
+		28AABCFD287F6A0D0054301C /* ChampionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionPresenter.swift; sourceTree = "<group>"; };
 		28AABCFF287F6B240054301C /* ChampionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChampionProtocols.swift; sourceTree = "<group>"; };
 		28BBCD9A2872731E0017B490 /* SkinsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinsCollectionViewCell.swift; sourceTree = "<group>"; };
 		28BBCD9B2872731E0017B490 /* SkinsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkinsCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -84,9 +84,9 @@
 			children = (
 				2860887628715A04003E769E /* Utils */,
 				2860886B2871369D003E769E /* Networking */,
-				2860886228712FE7003E769E /* ViewModel */,
-				2860886028712FD3003E769E /* Model */,
 				2860885F28712FCC003E769E /* View */,
+				2860886028712FD3003E769E /* Model */,
+				2860886228712FE7003E769E /* Presenter */,
 				2860884B28712FC2003E769E /* AppDelegate.swift */,
 				2860884D28712FC2003E769E /* SceneDelegate.swift */,
 				2860885428712FC5003E769E /* Assets.xcassets */,
@@ -114,12 +114,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		2860886228712FE7003E769E /* ViewModel */ = {
+		2860886228712FE7003E769E /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				28AABCFD287F6A0D0054301C /* ChampionViewModel.swift */,
+				28AABCFD287F6A0D0054301C /* ChampionPresenter.swift */,
 			);
-			path = ViewModel;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		2860886B2871369D003E769E /* Networking */ = {
@@ -249,7 +249,7 @@
 				2860886D287136B1003E769E /* ChampionServices.swift in Sources */,
 				2860886F28713731003E769E /* ChampionsResponseModel.swift in Sources */,
 				28BBCD9C2872731E0017B490 /* SkinsCollectionViewCell.swift in Sources */,
-				28AABCFE287F6A0D0054301C /* ChampionViewModel.swift in Sources */,
+				28AABCFE287F6A0D0054301C /* ChampionPresenter.swift in Sources */,
 				2860887828715A19003E769E /* UITableViewExtension.swift in Sources */,
 				2860886528712FFF003E769E /* ChampionViewController.swift in Sources */,
 				2860887A28716670003E769E /* UIImageExtension.swift in Sources */,
