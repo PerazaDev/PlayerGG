@@ -26,6 +26,7 @@
 		28BBCD9C2872731E0017B490 /* SkinsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BBCD9A2872731E0017B490 /* SkinsCollectionViewCell.swift */; };
 		28BBCD9D2872731E0017B490 /* SkinsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28BBCD9B2872731E0017B490 /* SkinsCollectionViewCell.xib */; };
 		28BF37262878C75C00D4EE09 /* CustomUIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BF37252878C75C00D4EE09 /* CustomUIImageView.swift */; };
+		28ECBC7628A2FA4A0083B71F /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28ECBC7528A2FA4A0083B71F /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		28BBCD9A2872731E0017B490 /* SkinsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkinsCollectionViewCell.swift; sourceTree = "<group>"; };
 		28BBCD9B2872731E0017B490 /* SkinsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkinsCollectionViewCell.xib; sourceTree = "<group>"; };
 		28BF37252878C75C00D4EE09 /* CustomUIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUIImageView.swift; sourceTree = "<group>"; };
+		28ECBC7528A2FA4A0083B71F /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				2860887928716670003E769E /* UIImageExtension.swift */,
 				28BF37252878C75C00D4EE09 /* CustomUIImageView.swift */,
 				28AABCFF287F6B240054301C /* ChampionProtocols.swift */,
+				28ECBC7528A2FA4A0083B71F /* UIViewExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 				2860887328713834003E769E /* ChampionTableViewCell.swift in Sources */,
 				2860886D287136B1003E769E /* ChampionServices.swift in Sources */,
 				2860886F28713731003E769E /* ChampionsResponseModel.swift in Sources */,
+				28ECBC7628A2FA4A0083B71F /* UIViewExtension.swift in Sources */,
 				28BBCD9C2872731E0017B490 /* SkinsCollectionViewCell.swift in Sources */,
 				28AABCFE287F6A0D0054301C /* ChampionPresenter.swift in Sources */,
 				2860887828715A19003E769E /* UITableViewExtension.swift in Sources */,

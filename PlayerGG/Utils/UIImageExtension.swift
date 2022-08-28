@@ -9,24 +9,18 @@ import UIKit
 extension UIImageView {
     static let spinner = UIActivityIndicatorView()
     func loadImg(url: URL) {
+        self.image = nil
+        self.showLoading()
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
                 if let image = UIImage(data: data) {
                     DispatchQueue.main.async {
                         self?.image = image
+                        self?.stopLoading()
                     }
                 }
             }
         }
     }
-    func showSpinner () {
-        self.addSubview(UIImageView.spinner)
-        UIImageView.spinner.translatesAutoresizingMaskIntoConstraints = false
-        UIImageView.spinner.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
-        UIImageView.spinner.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        UIImageView.spinner.startAnimating()
-    }
-    func hideSpinner (){
-        UIImageView.spinner.removeFromSuperview()
-    }
+
 }

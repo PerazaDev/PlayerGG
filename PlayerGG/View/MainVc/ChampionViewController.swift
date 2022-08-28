@@ -46,7 +46,6 @@ class ChampionViewController: UIViewController {
 
     func setupView(){
         self.title = "Campeones"
-        //self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass")?.withTintColor(.gray, renderingMode: .alwaysOriginal), style: .done, target: self, action: #selector(didSearch))
         self.navigationItem.largeTitleDisplayMode = .always
         self.navigationItem.hidesSearchBarWhenScrolling = true
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -99,8 +98,6 @@ extension ChampionViewController : ChampionsVMProtocol {
             }
         }
     }
-    
-    
 }
 
 extension ChampionViewController : UITableViewDelegate, UITableViewDataSource{
@@ -117,13 +114,13 @@ extension ChampionViewController : UITableViewDelegate, UITableViewDataSource{
             return UITableViewCell()
         }
         if resultSearchController.isActive {
-            presenter.getIcoinChampionURL(icon: self.filteredChampions[indexPath.row].id) {
-                cell.configureCell(name: self.filteredChampions[indexPath.row].name, icon: self.iconCurrent)
-            }
+             let url = URL(string: presenter.getIconPath(typeimage: .icon, icon: self.filteredChampions[indexPath.row].id))
+            cell.configureCell(name: self.filteredChampions[indexPath.row].name, icon: url)
+
+            
         }else{
-            presenter.getIcoinChampionURL(icon: self.champions[indexPath.row].id) {
-                cell.configureCell(name: self.champions[indexPath.row].name, icon: self.iconCurrent)
-            }
+            let url = URL(string: presenter.getIconPath(typeimage: .icon, icon: self.champions[indexPath.row].id))
+           cell.configureCell(name: self.champions[indexPath.row].name, icon: url)
         }
         return cell
     }
