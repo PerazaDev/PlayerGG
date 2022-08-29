@@ -19,13 +19,16 @@ class SkinsCollectionViewCell: UICollectionViewCell {
         if let url = skin {
             self.nameLb.text = name
             self.skinImg.image = nil
-            self.task = URLSession.shared.dataTask(with: url) { data, response, error in
+            self.skinImg.loadImg(url: url) {
+                
+            }
+           /* self.task = URLSession.shared.dataTask(with: url) { data, response, error in
                 guard let data = data, let newimage = UIImage(data: data) else {return}
                 DispatchQueue.main.async {
                     self.skinImg.image = newimage
                 }
             }
-            self.task.resume()
+            self.task.resume()*/
             
         }
     }

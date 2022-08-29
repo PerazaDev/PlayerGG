@@ -13,7 +13,6 @@ protocol ChampionsVMProtocol : AnyObject{
 }
 protocol ChampionDetailVMProtocol : AnyObject{
     func loadChampion(for champ : ChampionModel)
-    func getIconChampion(for imgURL : URL?)
 }
 protocol IconChampionProtocol : AnyObject {
 }

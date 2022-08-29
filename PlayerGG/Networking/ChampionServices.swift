@@ -12,7 +12,7 @@ final class ChampionServices {
     static let shared = ChampionServices()
    
     //funcion para traer los campeones en general
-    func getChampion(completion : @escaping (_ champs:ChampionsResponseModel?)->()){
+    func getChampions(completion : @escaping (_ champs:ChampionsResponseModel?)->()){
         let urlsession = URLSession.shared
         
         let url = URL(string:"http://ddragon.leagueoflegends.com/cdn/12.5.1/data/es_MX/champion.json")

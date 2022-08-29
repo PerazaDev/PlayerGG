@@ -9,7 +9,7 @@ import UIKit
 
 class ChampionTableViewCell: UITableViewCell {
     var task : URLSessionDataTask!
-    @IBOutlet weak var championsImg: CustomUIImageView!
+    @IBOutlet weak var championsImg: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,13 +17,14 @@ class ChampionTableViewCell: UITableViewCell {
     }
     
     func configureCell (name :String, icon : URL?){
-        
-            self.championsImg.layer.cornerRadius = self.championsImg.layer.bounds.height/2
+       
+        self.championsImg.layer.cornerRadius = self.championsImg.layer.bounds.height/2
+        if let url = icon {
+            
             self.nameLabel.text = name
-            if let url = icon {
+            DispatchQueue.main.async {
                 self.championsImg.loadImg(url: url)
             }
-        
+        }
     }
-    
 }

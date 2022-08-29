@@ -24,17 +24,18 @@ class ChampionDetailViewController: UIViewController {
             self.skinsCollectionView.reloadData()
         }
     }}
+    let presenter  = ChampionDetailPresenter()
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView ()
+        //setupView ()
+       
 
     }
+    override func viewWillAppear(_ animated: Bool) {
+        presenter.delegate = self
+        presenter.loadDataChampion(name: self.championId)
+    }
     private func setupView (){
-       // skinsCollectionView.delegate = self
-       // skinsCollectionView.dataSource = self
-        ChampionServices.shared.getChampion(name: "Talon") { champ in
-            print(champ)
-        }
         ChampionServices.shared.getChampion(name: championId) { champ in
             ChampionServices.shared.getIcoinChampion(typeimage: .full, icon: "\(self.championId)_0") { img in
                 ChampionServices.shared.getIcoinChampion(typeimage: .portrait, icon: "\(self.championId)_0") { img2 in
@@ -62,16 +63,13 @@ extension ChampionDetailViewController :UICollectionViewDelegate, UICollectionVi
             return UICollectionViewCell()
             
         }
-        ChampionServices.shared.getIcoinChampionURL(typeimage: .portrait, icon: "\(self.championDetail?.id ?? "")_\(self.championDetail?.skins?[indexPath.row].num ?? 0)") { img in
+        let img = self.presenter.getIconPath(typeimage: .portrait, icon: "\(self.championDetail?.id ?? "")_\(self.championDetail?.skins?[indexPath.row].num ?? 0)")
+        let skin = URL(string: img)
+        cell.configure(name: self.championDetail?.skins?[indexPath.row].name ?? "", skin: skin)
+        /*ChampionServices.shared.getIcoinChampionURL(typeimage: .portrait, icon: "\(self.championDetail?.id ?? "")_\(self.championDetail?.skins?[indexPath.row].num ?? 0)") { img in
             cell.configure(name: self.championDetail?.skins?[indexPath.row].name ?? "", skin: img)
-        }
-        /*ChampionViewModel.shared.getIcoinChampion(typeimage: .portrait, icon: "\(self.championDetail?.id ?? "")_\(self.championDetail?.skins?[indexPath.row].num ?? 0)") { img in
-            cell.configure(name: self.championDetail?.skins?[indexPath.row].name ?? "", skin: img)
-            
         }*/
-        /*ChampionViewModel.shared.getIcoinChampion(typeimage: .icon, icon: self.champions[indexPath.row].id) { img in
-            cell.configureCell(name: self.champions[indexPath.row].name, icon: img)
-        }*/
+
         return cell
         
     }
@@ -79,13 +77,15 @@ extension ChampionDetailViewController :UICollectionViewDelegate, UICollectionVi
     
 }
 extension ChampionDetailViewController : ChampionDetailVMProtocol {
-    func getIconChampion(for imgURL: URL?) {
-        
-    }
-    
     func loadChampion(for champ: ChampionModel) {
-        
+        self.championDetail = champ
+        DispatchQueue.main.async {
+            self.mainImage.loadImg(url: URL(string: self.presenter.getIconPath(typeimage: .full, icon: "\(self.championId)_0"))!) {
+            }
+            self.splashImage.loadImg(url: URL(string: self.presenter.getIconPath(typeimage: .portrait, icon: "\(self.championId)_0"))!) {
+                
+            }
+        }
+    
     }
-    
-    
 }

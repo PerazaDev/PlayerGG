@@ -8,8 +8,8 @@
 import UIKit
 extension UIImageView {
     static let spinner = UIActivityIndicatorView()
-    func loadImg(url: URL) {
-        self.image = nil
+    func loadImg(url: URL, completion: @escaping ()->Void = {}) {
+        //self.image = nil
         self.showLoading()
         DispatchQueue.global().async { [weak self] in
             if let data = try? Data(contentsOf: url) {
@@ -17,6 +17,7 @@ extension UIImageView {
                     DispatchQueue.main.async {
                         self?.image = image
                         self?.stopLoading()
+                        completion()
                     }
                 }
             }

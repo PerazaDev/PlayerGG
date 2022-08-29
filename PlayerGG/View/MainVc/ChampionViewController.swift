@@ -40,7 +40,7 @@ class ChampionViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.listDelegate = self
+        presenter.delegate = self
         fetchData ()
     }
 
@@ -112,6 +112,9 @@ extension ChampionViewController : UITableViewDelegate, UITableViewDataSource{
         //validamos que haya una celda con el identifier y asi la reutilizamos
         guard let cell = championsTV.dequeueReusableCell(withIdentifier: "championCustomCell", for: indexPath) as? ChampionTableViewCell else{
             return UITableViewCell()
+        }
+        if indexPath.row != 0 {
+            cell.championsImg.image = nil
         }
         if resultSearchController.isActive {
              let url = URL(string: presenter.getIconPath(typeimage: .icon, icon: self.filteredChampions[indexPath.row].id))

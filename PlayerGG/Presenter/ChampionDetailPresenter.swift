@@ -1,23 +1,21 @@
 //
-//  ChampionViewModel.swift
+//  ChampionDetailPresenter.swift
 //  PlayerGG
 //
-//  Created by Daniel Sanchez Peraza on 13/07/22.
+//  Created by Daniel Sanchez Peraza on 28/08/22.
 //
 
 import Foundation
 
-final class ChampionPresenter {
-    weak var delegate: ChampionsVMProtocol?
+class ChampionDetailPresenter {
+    weak var delegate : ChampionDetailVMProtocol?
     let services = ChampionServices()
     
-    func loadDataChampions() {
-        services.getChampions {[weak self] champs in
-           self?.delegate?.loadChampions(for: champs)
-            
+    func loadDataChampion(name: String) {
+        services.getChampion(name: name) { [weak self] champ in
+            self?.delegate?.loadChampion(for: champ)
         }
     }
-
     func getIconPath(typeimage :TypeImage, icon :String) -> String {
         var endpoint = ""
         switch typeimage {
@@ -30,6 +28,4 @@ final class ChampionPresenter {
         }
         return endpoint
     }
-    
 }
-
