@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ChampionDetailViewController: UIViewController {
     @IBOutlet weak var mainImage: UIImageView!
@@ -24,6 +25,8 @@ class ChampionDetailViewController: UIViewController {
             self.skinsCollectionView.reloadData()
         }
     }}
+    var isLoadSplash = false {didSet{checkImages()}}
+    var isLoadMainImage = false {didSet{checkImages()}}
     let presenter  = ChampionDetailPresenter()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +37,22 @@ class ChampionDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         presenter.delegate = self
         presenter.loadDataChampion(name: self.championId)
+        mainImage.showAnimatedGradientSkeleton()
+        nameLb.showAnimatedGradientSkeleton()
+        loreLb.showAnimatedGradientSkeleton()
+        skinsCollectionView.showAnimatedGradientSkeleton()
+        loreTitle.showAnimatedGradientSkeleton()
+        splashImage.showAnimatedGradientSkeleton()
+    }
+    private func checkImages(){
+        if isLoadSplash && isLoadMainImage {
+            mainImage.hideSkeleton()
+            nameLb.hideSkeleton()
+            loreLb.hideSkeleton()
+            skinsCollectionView.hideSkeleton()
+            loreTitle.hideSkeleton()
+            splashImage.hideSkeleton()
+        }
     }
     private func setupView (){
         ChampionServices.shared.getChampion(name: championId) { champ in
@@ -78,12 +97,16 @@ extension ChampionDetailViewController :UICollectionViewDelegate, UICollectionVi
 }
 extension ChampionDetailViewController : ChampionDetailVMProtocol {
     func loadChampion(for champ: ChampionModel) {
-        self.championDetail = champ
         DispatchQueue.main.async {
+            self.championDetail = champ
+            self.nameLb.text = champ.name
+            self.loreTitle.text = champ.title
+            self.loreLb.text = champ.lore
             self.mainImage.loadImg(url: URL(string: self.presenter.getIconPath(typeimage: .full, icon: "\(self.championId)_0"))!) {
+                self.isLoadMainImage = true
             }
             self.splashImage.loadImg(url: URL(string: self.presenter.getIconPath(typeimage: .portrait, icon: "\(self.championId)_0"))!) {
-                
+                self.isLoadSplash = true
             }
         }
     

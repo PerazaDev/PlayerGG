@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "skeletonview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Juanpe/SkeletonView.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "2ac515b97ebe3ce923e7cbe82bf0cdb47f9b1002"
+      }
+    }
+  ],
+  "version" : 2
+}
